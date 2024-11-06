@@ -1,18 +1,27 @@
 "use client";
 
 import { useChat } from "ai/react";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-export default function ChatUI() {
+interface ChatUIProps {
+  id: string;
+}
+
+export default function ChatUI({ id }: ChatUIProps) {
   const { messages, input, handleInputChange, handleSubmit, isLoading } =
-    useChat();
+    useChat({
+      body: {
+        id,
+      },
+    });
 
   return (
     <div className="flex flex-col h-screen">
       <header className="h-12 flex items-center justify-between px-4">
-        {/* Header用のスペース */}
+        <SidebarTrigger />
       </header>
 
       <main className="flex-1 overflow-hidden px-4">
